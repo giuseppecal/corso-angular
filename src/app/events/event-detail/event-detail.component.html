@@ -1,0 +1,19 @@
+
+<form>
+  <h3>Dettaglio Evento {{currentEvent?.name}}</h3>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input id="name" name="name" 
+          required 
+          [(ngModel)]="currentEvent.name"
+          type="text" 
+          class="form-control" 
+          placeholder="Digitare il nome"
+          #nameValidation="ngModel" /> <!--variabile di appoggio per ngModel, la uso nel div di validation -->
+    <div [hidden]="nameValidation.valid || nameValidation.pristine" class="alert alert-danger">Name is required</div>
+  </div>
+
+  <button class="btn btn-default">Save</button>
+  <button class="btn btn-default" (click)="close()">Chiudi</button>
+
+</form>
