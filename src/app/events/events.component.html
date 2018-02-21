@@ -1,17 +1,19 @@
-<button type="button" 
-  class="btn btn-info btn-md" 
-  modalOpener="modal1" >Open Modal 1</button> <!-- apro la modale 1-->
+<button type="button" class="btn btn-info btn-md" modalOpener="modal1">Open Modal 1</button>
+<!-- apro la modale 1-->
 
-<button type="button" 
-  class="btn btn-primary btn-md" 
-  modalOpener="modal2" >Open Modal 2</button> <!-- apro la modale 2-->
+<button type="button" class="btn btn-primary btn-md" modalOpener="modal2">Open Modal 2</button>
+<!-- apro la modale 2-->
 
-<app-modal title="BNL external title" modalId="modal1">
+<!-- modale 1 -->
+<app-modal title="BNL external title1" modalId="modal1">
   <p>Una descrizione qualsiasi 1 ...</p>
 </app-modal>
 
+<!-- modale 2 -->
 <app-modal title="BNL external title2" modalId="modal2">
-    <p><b>Una descrizione qualsiasi 2 ...</b></p>
+  <p>
+    <b>Una descrizione qualsiasi 2 ...</b>
+  </p>
 </app-modal>
 
 <div *ngIf="!formVisible">
@@ -22,9 +24,7 @@
     {{saveResponse}}
   </div>
 
-  <button class="btn btn-primary" (click)="createEvent()">
-    Create
-  </button>
+  <button class="btn btn-primary" (click)="createEvent()">Create</button>
 
   <table class="table table-responsive table-striped table-hover">
     <tr>

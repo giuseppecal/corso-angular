@@ -1,11 +1,15 @@
 import { Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
 import { Event } from '../events.model';
+import { ComunicatorService } from '../../common/comunicator.service';
 
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html'
 })
 export class EventDetailComponent {
+
+  constructor(private comunicator: ComunicatorService) {
+  }
 
   @Output()
   public closeClicked = new EventEmitter();
@@ -22,9 +26,8 @@ export class EventDetailComponent {
   @Input()
   public currentEvent: Event;
 
-  constructor() {}
-
   public close() {
+    this.comunicator.sendMessage('Il Chiudi ha comunicato con il menu');
     this.closeClicked.emit();
   }
 

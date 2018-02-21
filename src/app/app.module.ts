@@ -10,6 +10,7 @@ import { EventsService } from './events/events.service';
 import { HttpModule } from '@angular/http';
 import { ModalComponent } from './modal/modal.component'
 import { ModalOpenereDirective } from './modal/modal-opener.directive';
+import { ComunicatorService } from './common/comunicator.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { ModalOpenereDirective } from './modal/modal-opener.directive';
   imports: [
     BrowserModule, FormsModule, HttpModule
   ],
-  providers: [ EventsService, { provide: EventsService, useClass: EventsService} ], // singleton
+  providers: [ ComunicatorService, EventsService, { provide: EventsService, useClass: EventsService } ], // singleton
   bootstrap: [AppComponent]
 })
 export class AppModule { }
