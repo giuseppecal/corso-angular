@@ -4,20 +4,18 @@ import { EventsService } from './events.service';
 
 @Component({
   selector: 'app-events',
-  templateUrl: './events.component.html',
-  // providers: [EventsService]
+  templateUrl: './events.component.html'
 })
 export class EventsComponent {
 
   public eventList: Event[];
-  public selectedEvent: Event;
+  public selectedEvent: Event; 
   public formVisible: boolean;
-
-  public saveResponse: string = '';
+  public saveResponse: string;
   // private service: EventsService; // il private nel costruttore mi ha fatto commentare questa riga
 
   constructor(private service: EventsService) {
-    this.hideForm();
+    this.hideDetailForm();
     // this.service = service; // il private nel costruttore mi ha fatto commentare questa riga
     this.loadEvents();
   }
@@ -32,7 +30,7 @@ export class EventsComponent {
     this.selectedEvent = new Event();
     this.selectedEvent.startDate = '2018-01-12';
     this.selectedEvent.endDate = '2018-01-13';
-    this.showForm();
+    this.showDetailForm();
   }
 
   public saveEvent() {
@@ -48,12 +46,12 @@ export class EventsComponent {
       this.service.deleteEvent(event).subscribe(
         (data: number) => {
           this.saveOk();
-          this.hideForm();
+          this.hideDetailForm();
           this.loadEvents();
         },
         err => {
           this.saveKo(err);
-          this.hideForm();
+          this.hideDetailForm();
         });
     }
   }
@@ -62,12 +60,12 @@ export class EventsComponent {
     this.service.saveEvent(this.selectedEvent).subscribe(
       (data: number) => {
         this.saveOk();
-        this.hideForm();
+        this.hideDetailForm();
         this.loadEvents();
       },
       err => {
         this.saveKo(err);
-        this.showForm();
+        this.showDetailForm();
       });
   }
 
@@ -81,7 +79,7 @@ export class EventsComponent {
 
   public editEvent(event: Event) {
     this.selectedEvent = event;
-    this.showForm();
+    this.showDetailForm();
   }
 
   public updateEvent() {
@@ -97,11 +95,11 @@ export class EventsComponent {
       });
   }
 
-  public showForm() {
+  public showDetailForm() {
     this.formVisible = true;
   }
 
-  public hideForm() {
+  public hideDetailForm() {
     this.formVisible = false;
   }
 }

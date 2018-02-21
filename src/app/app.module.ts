@@ -7,11 +7,13 @@ import { EventDetailComponent } from './events/event-detail/event-detail.compone
 import { BooleanPipe } from './common/boolean.pipe';
 import { FormsModule } from '@angular/forms';
 import { EventsService } from './events/events.service';
-import { HttpModule } from '@angular/http'
+import { HttpModule } from '@angular/http';
+import { ModalComponent } from './modal/modal.component'
+import { ModalOpenereDirective } from './modal/modal-opener.directive';
 
 @NgModule({
   declarations: [
-    AppComponent, MenuComponent, EventsComponent, EventDetailComponent, BooleanPipe 
+    AppComponent, MenuComponent, EventsComponent, EventDetailComponent, BooleanPipe, ModalComponent, ModalOpenereDirective
   ],
   imports: [
     BrowserModule, FormsModule, HttpModule

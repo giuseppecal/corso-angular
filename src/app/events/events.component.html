@@ -1,3 +1,19 @@
+<button type="button" 
+  class="btn btn-info btn-md" 
+  modalOpener="modal1" >Open Modal 1</button> <!-- apro la modale 1-->
+
+<button type="button" 
+  class="btn btn-primary btn-md" 
+  modalOpener="modal2" >Open Modal 2</button> <!-- apro la modale 2-->
+
+<app-modal title="BNL external title" modalId="modal1">
+  <p>Una descrizione qualsiasi 1 ...</p>
+</app-modal>
+
+<app-modal title="BNL external title2" modalId="modal2">
+    <p><b>Una descrizione qualsiasi 2 ...</b></p>
+</app-modal>
+
 <div *ngIf="!formVisible">
 
   <h2>List of BNL Events</h2>
@@ -39,11 +55,6 @@
 </div>
 
 
-<app-event-detail 
-    *ngIf=formVisible 
-    (closeClicked) = "hideForm()"
-    (saveClicked) = "saveEvent()"
-    (deleteClicked)= "saveEvent()" 
-    [currentEvent] = "selectedEvent"
-    [saveResponse] = "saveResponse">
+<app-event-detail *ngIf=formVisible (closeClicked)="hideDetailForm()" (saveClicked)="saveEvent()" (deleteClicked)="saveEvent()"
+  [currentEvent]="selectedEvent" [saveResponse]="saveResponse">
 </app-event-detail>
