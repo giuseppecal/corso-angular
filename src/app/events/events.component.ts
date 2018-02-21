@@ -37,25 +37,25 @@ export class EventsComponent {
 
   public saveEvent() {
     if (this.selectedEvent.id) {
-
       this.updateEvent();
     } else {
-
       this.create();
     }
   }
 
   public deleteEvent(event: Event) {
-    this.service.deleteEvent(event).subscribe(
-      (data: number) => {
-        this.saveOk();
-        this.hideForm();
-        this.loadEvents();
-      },
-      err => {
-        this.saveKo(err);
-        this.showForm();
-      });
+    if (confirm('Are you sure to delete ' + event.name)) {
+      this.service.deleteEvent(event).subscribe(
+        (data: number) => {
+          this.saveOk();
+          this.hideForm();
+          this.loadEvents();
+        },
+        err => {
+          this.saveKo(err);
+          this.hideForm();
+        });
+    }
   }
 
   public create() {
@@ -73,7 +73,6 @@ export class EventsComponent {
 
   public saveOk() {
     this.saveResponse = 'Success! ';
-
   }
 
   public saveKo(err: any) {
