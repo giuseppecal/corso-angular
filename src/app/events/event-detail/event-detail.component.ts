@@ -10,6 +10,15 @@ export class EventDetailComponent {
   @Output()
   public closeClicked = new EventEmitter();
 
+  @Output()
+  public saveClicked = new EventEmitter();
+
+  @Output()
+  public deleteClicked = new EventEmitter();
+
+  @Input()
+  public saveResponse: string;
+
   @Input()
   public currentEvent: Event;
 
@@ -19,4 +28,11 @@ export class EventDetailComponent {
     this.closeClicked.emit();
   }
 
+  public save() {
+    this.saveClicked.emit();
+  }
+
+  public delete() {
+    this.deleteClicked.emit();
+  }
 }
