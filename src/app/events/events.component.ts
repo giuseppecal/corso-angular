@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from './events.model';
 import { EventsService } from './events.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-events',
@@ -14,15 +15,30 @@ export class EventsComponent {
   public saveResponse: string;
   // private service: EventsService; // il private nel costruttore mi ha fatto commentare questa riga
 
-  constructor(private service: EventsService) {
+  constructor(
+            private service: EventsService,
+            private activateRoute: ActivatedRoute) {
+    
     this.hideDetailForm();
     // this.service = service; // il private nel costruttore mi ha fatto commentare questa riga
-    this.loadEvents();
+    // senza il resolve
+    //this.loadEvents();  
+    // questo events è quello dichiarato in appRoutes su events
+    this.eventList = this.activateRoute.snapshot.data['events'];
+
   }
 
   public loadEvents() {
     this.service.getEvents().subscribe( // subscribe all'evento del
       (data: Event[]) => this.eventList = data,
+      err => console.log(err));
+  }
+
+  public loadEvent(id: number) {
+    this.service.getEvent(id).subscribe( // subscribe all'evento del
+      (data: Event) => {
+        this.selectedEvent = data
+      },
       err => console.log(err));
   }
 

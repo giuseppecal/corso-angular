@@ -1,7 +1,7 @@
-import { Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Event } from '../events.model';
 import { ComunicatorService } from '../../common/comunicator.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventsService } from '../events.service';
 
 @Component({
@@ -11,14 +11,21 @@ import { EventsService } from '../events.service';
 export class EventDetailComponent {
 
   constructor(
-      private comunicator: ComunicatorService,
-      private activatedRoute: ActivatedRoute,
-      private eventService: EventsService) {
-      
-      const id = this.activatedRoute.snapshot.params['id'];
-      if ( id ) {
-        this.loadEvent(id);
-      }
+    private comunicator: ComunicatorService,
+    private activatedRoute: ActivatedRoute,
+    private eventService: EventsService,
+    private router: Router
+  ) {
+
+    /*
+    vecchia gestione
+    const id = this.activatedRoute.snapshot.params['id'];
+    if (id) {
+      this.loadEvent(id);
+    }*/
+    // dal resolve
+    // route --> resolve --> componente
+    this.currentEvent = this.activatedRoute.snapshot.data['event'];
   }
 
   @Output()
@@ -47,6 +54,7 @@ export class EventDetailComponent {
   public close() {
     this.comunicator.sendMessage('Il Chiudi ha comunicato con il menu');
     this.closeClicked.emit();
+    this.router.navigateByUrl('events');
   }
 
   public save() {

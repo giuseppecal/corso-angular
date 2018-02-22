@@ -42,7 +42,8 @@
       <td>{{ event.endDate }}</td>
       <td>{{ event.visible | boolen }}</td>
       <td>
-        <button class="btn btn-warning" (click)="editEvent(event)">
+        <!-- button class="btn btn-warning" (click)="editEvent(event)" -->
+        <button class="btn btn-warning" [routerLink]="['/event', event.id]">
           Edit
         </button>
         <button class="btn btn-danger" (click)="deleteEvent(event)">
