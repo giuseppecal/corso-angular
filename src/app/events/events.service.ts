@@ -18,6 +18,11 @@ export class EventsService {
         .map((res: Response) => res.json() as Event[]);
     }
 
+    public getEvent(id: number) : Observable<Event> {
+        return this.http.get(this.apiUrl + '/' + id)
+        .map((res: Response) => res.json() as Event);
+    }
+
     public saveEvent(event: Event) : Observable<number> {
         return this.http.post(this.apiUrl, event)
         .map((res: Response) => res.status);

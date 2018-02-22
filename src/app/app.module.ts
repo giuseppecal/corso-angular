@@ -11,15 +11,18 @@ import { HttpModule } from '@angular/http';
 import { ModalComponent } from './modal/modal.component'
 import { ModalOpenereDirective } from './modal/modal-opener.directive';
 import { ComunicatorService } from './common/comunicator.service';
+import { SpeakersComponent } from './speakers/speakers.component';
+import { routing } from './app.routes';
 
 @NgModule({
   declarations: [
-    AppComponent, MenuComponent, EventsComponent, EventDetailComponent, BooleanPipe, ModalComponent, ModalOpenereDirective
+    AppComponent, MenuComponent, EventsComponent, EventDetailComponent, BooleanPipe, ModalComponent, ModalOpenereDirective, SpeakersComponent
   ],
   imports: [
-    BrowserModule, FormsModule, HttpModule
+    BrowserModule, FormsModule, HttpModule, routing
   ],
-  providers: [ ComunicatorService, EventsService, { provide: EventsService, useClass: EventsService } ], // singleton
+  providers: [ ComunicatorService, 
+                EventsService, { provide: EventsService, useClass: EventsService } ], // singleton
   bootstrap: [AppComponent]
 })
 export class AppModule { }
